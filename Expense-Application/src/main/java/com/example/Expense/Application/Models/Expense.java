@@ -2,8 +2,12 @@ package com.example.Expense.Application.Models;
 
 import java.util.Map;
 
+import com.example.Expense.Application.Enums.SplitMethod;
+
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -29,10 +33,10 @@ public class Expense {
 	@NotNull
 	private Double amount;
 	// Split method: EQUAL, EXACT, or PERCENTAGE
-	@NotNull
-	private String splitMethod;
+	@Enumerated(EnumType.STRING)
+	private SplitMethod splitMethod;
 	// A map that holds user ID and the amount each user owes.
 	@ElementCollection
-	private Map<Long,Double> splitDetails;
+	private Map<String,Double> splitDetails;
 
 }
